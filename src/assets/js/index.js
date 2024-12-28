@@ -30,10 +30,23 @@ class Splash {
 
     async startAnimation() {
         let splashes = [
-            { "message": "Je... vie...", "author": "Luuxis" },
-            { "message": "Salut je suis du code.", "author": "Luuxis" },
-            { "message": "Linux n'est pas un os, mais un kernel.", "author": "Luuxis" }
+            { "message": "Chargement des pixels magiques...", "author": "PhynariaMC" },
+            { "message": "Préparation des donjons secrets...", "author": "PhynariaMC" },
+            { "message": "Invocation des creepers amicaux...", "author": "PhynariaMC" },
+            { "message": "Téléportation en cours... restez immobile !", "author": "PhynariaMC" },
+            { "message": "Fabrication d'épées en diamant...", "author": "PhynariaMC" },
+            { "message": "Ajout de blocs invisibles...", "author": "PhynariaMC" },
+            { "message": "Votre aventure commence bientôt...", "author": "PhynariaMC" },
+            { "message": "Chargement des biomes enchantés...", "author": "PhynariaMC" },
+            { "message": "Remplissage des coffres au trésor...", "author": "PhynariaMC" },
+            { "message": "Veuillez ne pas nourrir les zombies...", "author": "PhynariaMC" },
+            { "message": "Création d'un portail vers Craftoria...", "author": "PhynariaMC" },
+            { "message": "Génération de montagnes flottantes...", "author": "PhynariaMC" },
+            { "message": "Élevage de dragons invisibles...", "author": "PhynariaMC" },
+            { "message": "Chargement de la magie voxel...", "author": "PhynariaMC" },
+            { "message": "Mélange de potions... attention aux éclaboussures !", "author": "PhynariaMC" }
         ];
+        
         let splash = splashes[Math.floor(Math.random() * splashes.length)];
         this.splashMessage.textContent = splash.message;
         this.splashAuthor.children[0].textContent = "@" + splash.author;

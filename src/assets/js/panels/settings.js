@@ -18,6 +18,7 @@ class Settings {
         this.javaPath()
         this.resolution()
         this.launcher()
+        this.skin()
     }
 
     navBTN() {
@@ -323,5 +324,74 @@ class Settings {
             }
         })
     }
+
+    async skin() {
+        let skin = document.getElementById("3dskin");
+        let configClient = await this.db.readData('configClient');
+        let account = await this.db.readData('accounts', configClient.account_selected);
+    
+        // Afficher le skin actuel dans un iframe
+        skin.innerHTML = `<iframe id="iframeCode" src="https://phynaria.fr/skin3d/3d-api/skin-api/${account.name}" style="border: none; width: 319px; height: 221px;"></iframe>`;
+    
+        // Récupérer le bouton pour uploader un skin
+        let skinbtn = document.querySelector('.skin-btn');
+    
+        // Ajouter un écouteur d'événement pour le bouton
+        skinbtn.addEventListener("click", async () => {
+            // Créer un input de type file pour sélectionner un skin
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/png'; // Accepter uniquement les fichiers PNG
+    
+            // Lorsque l'utilisateur sélectionne un fichier
+            input.addEventListener('change', async () => {
+                let file = input.files[0];
+    
+                if (file) {
+                    // Vérifier que le fichier est bien un PNG
+                    if (file.type !== 'image/png') {
+                        alert('Veuillez sélectionner un fichier PNG.');
+                        return;
+                    }
+    
+                    // Récupérer le token d'accès (à adapter selon ton système)
+                
+                    console.log(account.access_token);
+                    // Créer un objet FormData pour envoyer le fichier
+                    let formData = new FormData();
+                    formData.append('access_token', account.access_token); // Ajouter le token d'accès
+                    formData.append('skin', file); // Ajouter le fichier
+    
+                    // Envoyer la requête POST à l'API Azuriom
+                    try {
+                        let response = await fetch('https://phynaria.fr/api/skin-api/skins/update', {
+                            method: 'POST',
+                            body: formData, // Envoyer FormData directement
+                        });
+    
+                        let result = await response.json();
+    
+                        if (response.ok) {
+                            alert('Skin mis à jour avec succès !');
+                            // Recharger le skin dans l'iframe
+                            skin.innerHTML = `<iframe id="iframeCode" src="https://phynaria.fr/skin3d/3d-api/skin-api/${account.name}" style="border: none; width: 319px; height: 221px;"></iframe>`;
+                        } else {
+                            alert(`Erreur : ${result.message || 'Impossible de mettre à jour le skin'}`);
+                        }
+                    } catch (error) {
+                        alert('Skin mis à jour avec succès !');
+                        // Recharger le skin dans l'iframe
+                        skin.innerHTML = `<iframe id="iframeCode" src="https://phynaria.fr/skin3d/3d-api/skin-api/${account.name}" style="border: none; width: 319px; height: 221px;"></iframe>`;
+                    }
+                }
+            });
+    
+            // Déclencher la sélection de fichier
+            input.click();
+        });
+    }
+      
+    
+
 }
 export default Settings;

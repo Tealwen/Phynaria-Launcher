@@ -33,8 +33,9 @@ function createWindow() {
         frame: os.platform() !== 'win32',
         show: false,
         webPreferences: {
-            contextIsolation: false,
-            nodeIntegration: true
+            nodeIntegration: true, // Active l'intégration Node.js
+            contextIsolation: false, // Permet l'utilisation de require/import
+            enableRemoteModule: true, // Si nécessaire
         },
     });
     Menu.setApplicationMenu(null);

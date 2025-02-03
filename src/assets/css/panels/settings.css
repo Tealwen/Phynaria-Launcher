@@ -411,3 +411,11 @@
 .active-close {
     border: 4px solid var(--element-color);
 }
+
+.skin-btn {
+    padding: 0.3rem 1rem;
+    background: var(--element-color);
+    border-radius: 15px;
+    margin: 0 1rem;
+    cursor: pointer;
+}

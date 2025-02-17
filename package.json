@@ -1,7 +1,7 @@
 {
     "name": "Phynaria-Launcher",
     "preductname": "PhynariaMC Launcher",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Launcher Mincraft pour le serveur PhynariaMC",
     "main": "src/app.js",
     "author": {
@@ -9,7 +9,7 @@
         "email": "contact@luuxis.fr",
         "url": "https://github.com/luuxis"
     },
-    "url": "http://ljkmrtj.cluster030.hosting.ovh.net/",
+    "url": "http://launcher.phynaria.fr/www/PhynariaLauncherV1",
     "scripts": {
         "start": "cross-env-shell NODE_ENV=dev DEV_TOOL=open electron .",
         "dev": "cross-env-shell DEV_TOOL=open nodemon --exec npm start",
